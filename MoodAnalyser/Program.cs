@@ -10,9 +10,18 @@ namespace MoodAnalyserTesting
         }
         public string AnalyserMood()
         {
-            if (Message.Contains("SAD"))
-                return "SAD";
-            else return "HAPPY";
+            try
+            {
+                if (Message.Equals(string.Empty))
+                    throw new MoodAnalyserCustomeException(MoodAnalyserCustomeException.ExceptionType.EMPTY_MOOD, "Mood should not be empty");
+                else if (this.Message.Contains("SAD"))
+                    return "SAD";
+                else return "HAPPY";
+            }
+            catch(NullReferenceException)
+            {
+                return "HAPPY";
+            }
         }
         static void Main(string[]args)
         {

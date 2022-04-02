@@ -57,5 +57,18 @@ namespace MoodAnalyserTesting
             string message = moodAnalayser.AnalyserMood();
             Assert.AreEqual("HAPPY", message);
         }
+
+        /// <summary>
+        /// Handle Exception if User Provides Invalid Mood
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenNull_ShouldReturnHappy()
+        {
+            moodAnalayser = new MoodAnalayser(" ");
+            //Act
+            string message = moodAnalayser.AnalyserMood();
+            //Assert
+            Assert.AreEqual("HAPPY", message);
+        }
     }
 }
