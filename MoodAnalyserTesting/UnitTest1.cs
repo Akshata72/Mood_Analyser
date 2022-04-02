@@ -9,25 +9,53 @@ namespace MoodAnalyserTesting
         [SetUp]
         public void Setup()
         {
-            moodAnalayser = new MoodAnalayser();
+            string res = "";
+            //Arrange
+            moodAnalayser = new MoodAnalayser(res);
         }
         /// <summary>
         /// TC-1.1 Given"I am in Sad Mood" message Should Return SAD
         /// </summary>
+
+        //[Test]
+        //public void GivenMassage_When_ShouldReturnSad()
+        //{
+        //    string message = moodAnalayser.AnalyserMood("I am in SAD Mood");
+        //    Assert.AreEqual("SAD", message);
+        //}
+        /// <summary>
+        /// TC-1.2 Given "I am in Any Mood" message Should Return HAPPY"
+        /// </summary>
+
+        //[Test]
+        //public void GivenMassage_When_ShouldReturnHappy()
+        //{
+        //    string message = moodAnalayser.AnalyserMood("I am in Any Mood");
+        //    Assert.AreEqual("HAPPY", message);
+        //}
+
+        /// <summary>
+        /// Refacor - Refactor the code to take the mood message in Constructor
+        /// </summary>
+        /// Repeat TC 1.1- Given"I am in Sad Mood" message in Constructor Should Return SAD
         [Test]
         public void GivenMassage_When_ShouldReturnSad()
         {
-            string message = moodAnalayser.AnalyserMood("I an in SAD Mood");
-                Assert.AreEqual("SAD", message); 
+            moodAnalayser = new MoodAnalayser("I am in SAD Mood");
+            string message = moodAnalayser.AnalyserMood();
+            Assert.AreEqual("SAD", message);
         }
+
         /// <summary>
-        /// TC-1.2 Given"I am in Any Mood" message Should Return HAPPY
+        /// Refacor - Refactor the code to take the mood message in Constructor
         /// </summary>
+        ///  Repeat TC 1.2- Given"I am in Any Mood" message in Constructor Should Return HAPPY
         [Test]
         public void GivenMassage_When_ShouldReturnHappy()
         {
-            string message = moodAnalayser.AnalyserMood("I an in Any Mood");
-                Assert.AreEqual("HAPPY", message); 
+            moodAnalayser = new MoodAnalayser("I am in Any Mood");
+            string message = moodAnalayser.AnalyserMood();
+            Assert.AreEqual("HAPPY", message);
         }
     }
 }
