@@ -59,7 +59,7 @@ namespace MoodAnalyserTesting
         }
 
         /// <summary>
-        /// Handle Exception if User Provides Invalid Mood
+        /// UC 2- Handle Exception if User Provides Invalid Mood
         /// </summary>
         [Test]
         public void GivenMessage_WhenNull_ShouldReturnHappy()
@@ -69,6 +69,46 @@ namespace MoodAnalyserTesting
             string message = moodAnalayser.AnalyserMood();
             //Assert
             Assert.AreEqual("HAPPY", message);
+        }
+
+        /// <summary>
+        /// UC 3- Inform user if entered Invalid Mood
+        /// </summary>
+        /// UC 3.1- Given NULL Mood Should Throw MoodAnalysisException
+
+        [Test]
+        public void GivenMessage_WhenNull_CustomeException()
+        {
+            string message = " ";
+            string expected = "Mood should not be null";
+            try
+            {
+                moodAnalayser = new MoodAnalayser(message);
+            }
+            catch(MoodAnalyserCustomeException exception)
+            {
+                Assert.AreEqual(expected, exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// UC 3- Inform user if entered Invalid Mood
+        /// </summary>
+        /// UC 3.2- Given Empty Mood Should Throw MoodAnalysisException
+        [Test]
+        public void GivenMessage_WhenEmpty_CustomeException()
+        {
+            string message = " ";
+            string expected = "Mood should not be empty";
+            try
+            {
+                // Act
+                moodAnalayser = new MoodAnalayser(message);
+            }
+            catch (MoodAnalyserCustomeException exception)
+            {
+                Assert.AreEqual(expected, exception.Message);
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MoodAnalyserTesting
             }
             catch(NullReferenceException)
             {
-                return "HAPPY";
+                throw new MoodAnalyserCustomeException(MoodAnalyserCustomeException.ExceptionType.EMPTY_NULL, "Mood should not be null");
             }
         }
         static void Main(string[]args)
