@@ -98,7 +98,7 @@ namespace MoodAnalyserTesting
         [Test]
         public void GivenMessage_WhenEmpty_CustomeException()
         {
-            string message = " ";
+            string message = null;
             string expected = "Mood should not be empty";
             try
             {
@@ -108,6 +108,60 @@ namespace MoodAnalyserTesting
             catch (MoodAnalyserCustomeException exception)
             {
                 Assert.AreEqual(expected, exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// UC 4-Use Reflection to Create MoodAnalyser with default Constructor
+        /// </summary>
+        MoodAnalyseFactory moodAnalyseFactory;
+        [SetUp]
+        public void Setup1()
+        {
+            moodAnalyseFactory = new MoodAnalyseFactory();
+        }
+        /// <summary>
+        /// UC 4.1-Given MoodAnalyser Class Name Should Return MoodAnalyser Object 
+        /// </summary>
+        [Test]
+        public void GivenMoodAnalyserClassName_WhenProper_ShouldReturnMoodAnalyserObject()
+        {
+            object expected = new MoodAnalyseFactory();
+            object result = MoodAnalyseFactory.GetMoodAnalyserObject("MoodAnalyserTesting.MoodAnalyseFactory", "MoodAnalyseFactory");
+            expected.Equals(result);
+        }
+
+        /// <summary>
+        /// UC 4.2-Given Class Name When Improper Should Throw MoodAnalysis Exception
+        /// </summary>
+        [Test]
+        public void GivenMoodAnalyserClassName_WhenImproper_ShouldThrowMoodAnalysisException()
+        {
+            string excepted = "Class not found";
+            try
+            {
+                object result = MoodAnalyseFactory.GetMoodAnalyserObject("MoodAnalyserTesting.MoodAnalyseFactory", "MoodAnalyseFactory");
+            }
+            catch (MoodAnalyserCustomeException exception)
+            {
+                Assert.AreEqual(excepted, exception.Message);
+            }
+        }
+
+        /// <summary>
+        /// UC 4.3-Given Class When Constructor Not Proper Should Throw MoodAnalysisException
+        /// </summary>
+        [Test]
+        public void GivenMoodAnalyserClassName_WhenConstructorNameIsImproper_ShouldThrowMoodAnalysisException()
+        {
+            string excepted = "constructor not found";
+            try
+            {
+                object result = MoodAnalyseFactory.GetMoodAnalyserObject("MoodAnalyserTesting.MoodAnalyseFactory", "MoodAnalyseFactory");
+            }
+            catch (MoodAnalyserCustomeException exception)
+            {
+                Assert.AreEqual(excepted, exception.Message);
             }
         }
     }
